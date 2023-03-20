@@ -33,7 +33,7 @@ public class Main {
                     Opciones temporal = new Opciones(nombre);
                     int temp = 0;
                     for( int i=0;i<Listado.size();i++){
-                        if(temporal.getNombre()==Listado.get(i).getNombre()){
+                        if(temporal.getNombre().equals(Listado.get(i).getNombre())){
                             temp = i;
                             break;
                         }
@@ -55,12 +55,13 @@ public class Main {
                     break;
                 case 4:
                     Collections.sort(Listado, new Comparador_nombre());
-                    for(int i=Listado.size()-1;i>=0;i--){
+                    for(int i=0;i<Listado.size();i++){
                         System.out.println(Listado.get(i).toString());                    
                     }
                     break;
                 case 5:
                     cerrar = 0;
+                    leer.close();
                     break;
                 case default:
                     break;
