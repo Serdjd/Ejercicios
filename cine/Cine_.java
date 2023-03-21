@@ -1,7 +1,7 @@
 package cine;
 
 public class Cine_ {
-    private String pelicula;
+    protected String pelicula;
     private int precio;
     public String getPelicula() {
         return pelicula;
@@ -15,9 +15,9 @@ public class Cine_ {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    public Cine_() {
-        this.pelicula = Generadores.rand_peliculas();
-        this.precio = Generadores.rand_precios(this.pelicula);
+    public Cine_(String pelicula) {
+        this.pelicula = pelicula;  
+        this.precio = Generadores.rand_precios(pelicula);
     }
-    
+
 }

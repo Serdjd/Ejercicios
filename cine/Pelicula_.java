@@ -1,6 +1,6 @@
 package cine;
 
-public class Pelicula_ {
+public class Pelicula_ extends Cine_{
     private String titulo;
     private int duracion;
     private int edad_minima;
@@ -29,11 +29,12 @@ public class Pelicula_ {
     public void setDirector(String director) {
         this.director = director;
     }
-    public Pelicula_(String titulo, int duracion, int edad_minima, String director) {
-        this.titulo = titulo;
-        this.duracion = duracion;
-        this.edad_minima = edad_minima;
-        this.director = director;
+    public Pelicula_(String pelicula) {
+        super(pelicula);
+        this.titulo = pelicula;
+        this.duracion = Generadores.rand_duracion(pelicula);
+        this.edad_minima = Generadores.rand_edad(pelicula);
+        this.director = Generadores.rand_director(pelicula);
     }
     
 }
