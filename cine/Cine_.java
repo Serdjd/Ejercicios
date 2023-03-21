@@ -15,9 +15,9 @@ public class Cine_ {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    public Cine_(String pelicula, int precio) {
-        this.pelicula = pelicula;
-        this.precio = precio;
+    public Cine_() {
+        this.pelicula = Generadores.rand_peliculas();
+        this.precio = Generadores.rand_precios(this.pelicula);
     }
     
 }
