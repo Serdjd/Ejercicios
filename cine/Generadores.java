@@ -61,4 +61,28 @@ public class Generadores {
         director.put("Avengers: End Game","Anthony Russo");
         return director.get(pelicula);
     }
+    public static String rand_nombre(){
+        int a = (int) Math.random()*7+1;
+        Map<Integer,String> nombres = new HashMap<>();
+        nombres.put(1,"Pepe");
+        nombres.put(2,"Javier");
+        nombres.put(3,"Juan Paco");
+        nombres.put(4,"Manuel");
+        nombres.put(5,"Raul");
+        nombres.put(6,"Alex");
+        nombres.put(7,"Andrés");
+        return nombres.get(a);
+    }
+    public static String rand_apellido(){
+        int a = (int) Math.random()*7+1;
+        Map<Integer,String> apellidos = new HashMap<>();
+        apellidos.put(1,"Gonzalez");
+        apellidos.put(2,"Muñoz");
+        apellidos.put(3,"Perez");
+        apellidos.put(4,"Canovas");
+        apellidos.put(5,"Gutierrez");
+        apellidos.put(6,"Sotos");
+        apellidos.put(7,"Arriza");
+        return apellidos.get(a);
+    }  
 }
