@@ -6,8 +6,8 @@ public class Generadores {
     public static final String Red="\u001B[31m";
     public static final String Green = "\u001B[32m";
     public static String rand_asientos(){
-        int i = (int)(Math.random()*1+0);
-        if(i==0){
+        int i = (int)Math.floor(Math.random()*2+1);
+        if(i==2){
             return Red;
         }
         else{
@@ -23,7 +23,8 @@ public class Generadores {
         pelis.put(4,"El bueno, el feo y el malo");
         pelis.put(5,"Avengers: End Game");
         System.out.println("Selecciona una pelicula:\nAvatar 2-->1\nLord of the rings-->2\nWakanda Forever-->3\nEl bueno, el feo y el malo-->4\nAvengers: End Game-->5\n");
-        return pelis.get(src.nextInt());
+        int num = src.nextInt();
+        return pelis.get(num);
     }
     public static int rand_precios(String pelicula){
         Map<String,Integer> precio = new HashMap<>();
@@ -62,7 +63,7 @@ public class Generadores {
         return director.get(pelicula);
     }
     public static String rand_nombre(){
-        int a = (int) Math.random()*7+1;
+        int a = (int) Math.floor(Math.random()*7+1);
         Map<Integer,String> nombres = new HashMap<>();
         nombres.put(1,"Pepe");
         nombres.put(2,"Javier");
@@ -74,7 +75,7 @@ public class Generadores {
         return nombres.get(a);
     }
     public static String rand_apellido(){
-        int a = (int) Math.random()*7+1;
+        int a = (int) Math.floor(Math.random()*7+1);
         Map<Integer,String> apellidos = new HashMap<>();
         apellidos.put(1,"Gonzalez");
         apellidos.put(2,"Muñoz");

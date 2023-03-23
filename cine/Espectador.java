@@ -32,8 +32,8 @@ public class Espectador {
     public Espectador() {
         this.nombre = Generadores.rand_nombre();
         this.apellido = Generadores.rand_apellido();
-        this.edad = (int) Math.random()*60+4;
-        this.dinero = (int) Math.random()*73+4;
+        this.edad = (int) Math.floor(Math.random()*60+4);
+        this.dinero = (int) Math.floor(Math.random()*73+4);
     }
     
 }
