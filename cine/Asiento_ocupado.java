@@ -15,7 +15,10 @@ public class Asiento_ocupado extends Espectador{
         super();
         this.asiento = asiento;
     }
-
+    public Asiento_ocupado(StringBuilder asiento,String nombre,String apellido, int edad, int dinero) {
+        super(nombre,apellido, edad, dinero);
+        this.asiento = asiento;
+    }
     @Override
     public String toString() {
         return "[" + asiento + "] ocupado por: "+super.getNombre()+" "+super.getApellido();

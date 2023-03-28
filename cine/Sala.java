@@ -15,10 +15,6 @@ public class Sala {
         this.sala = Generar_sala(film);
     }
 
-    public static final String Red = "\u001B[31m";
-    public static final String Green = "\u001B[32m";
-    public static final String Reset = "\u001B[0m";
-
     public static StringBuilder [][] Generar_sala(Pelicula_ film){
         StringBuilder hall[][] = new StringBuilder[10][9];
         String letras = "ABCDEFGHI";
@@ -51,4 +47,5 @@ public class Sala {
         }
         return hall;
     }
+
 }
