@@ -62,16 +62,31 @@ public class Main {
             System.out.println("Los asientos verdes están libres y los rojos están ocupados");
             System.out.println("Asiento");
             src.append(leer.nextLine());
-            for(lista.get(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1')){
-
-            }
-            System.out.println("Nombre: ");
-            String nombre = leer.nextLine();
-            System.out.println("Apellido: ");
-            String apellido = leer.nextLine();
-            System.out.println("Edad: ");
-            int edad = leer.nextInt();
-            System.out.println("Dinero: ");
-            int dinero = leer.nextInt();
-    }       
-}
+                if(lista.get(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1')instanceof Asiento_libre){
+                    System.out.println("El asiento está libre, meta sus datos para ver si cumple los requisitos");
+                    System.out.println("Nombre: ");
+                    String nombre = leer.nextLine();
+                    System.out.println("Apellido: ");
+                    String apellido = leer.nextLine();
+                    System.out.println("Edad: ");
+                    int edad = leer.nextInt();
+                    System.out.println("Dinero: ");
+                    int dinero = leer.nextInt();
+                    Asiento_ocupado Ocupado = new Asiento_ocupado(src, nombre, apellido, edad, dinero);
+                    if(Ocupado.getDinero()>=film.getPrecio()){
+                        if(Ocupado.getEdad()>=film.getEdad_minima()){
+                            Ocupado.setDinero(Ocupado.getDinero()-film.getPrecio());
+                            lista.remove(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1');
+                            lista.add(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1',Ocupado);
+                        }
+                        else{
+                            System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene la edad suficiente");
+                        }
+                    }
+                    else{
+                        System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene suficiente dinero");
+                    }           
+                }
+    }
+            
+}       
