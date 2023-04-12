@@ -21,7 +21,7 @@ public class Asiento_ocupado extends Espectador{
     }
     @Override
     public String toString() {
-        return "[" + asiento + "] ocupado por: "+super.getNombre()+" "+super.getApellido();
+        return "" + asiento + "";
     }
     
     

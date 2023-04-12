@@ -12,7 +12,8 @@ public class Main {
         Pelicula_ film = new Pelicula_(Generadores.peli());
             String letras = "ABCDEFGHI";
             StringBuilder hall[][] = new StringBuilder[10][9];
-            ArrayList<Object> lista = new ArrayList<>();
+            ArrayList<Asiento_libre> list = new ArrayList<>();
+            ArrayList<Asiento_ocupado> lista = new ArrayList<>();
             for(int i=0;i<9;i++){
                 for(int j=0;j<8;j++){
                     StringBuilder str = new StringBuilder();
@@ -30,13 +31,13 @@ public class Main {
                             else{
                                 System.out.println(ocupado.getNombre()+ocupado.getApellido()+" no tiene la edad suficiente");
                                 Asiento_libre libre = new Asiento_libre(str);
-                                lista.add(libre);
+                                list.add(libre);
                             }
                         }
                         else{
                             System.out.println(ocupado.getNombre()+ocupado.getApellido()+" no tiene suficiente dinero");
                             Asiento_libre libre = new Asiento_libre(str);
-                            lista.add(libre);
+                            list.add(libre);
                         }                    
                     }
                 }
@@ -48,7 +49,7 @@ public class Main {
                 System.out.print("\n");
             }
             Scanner leer = new Scanner(System.in);
-            StringBuilder src = new StringBuilder();
+            
             Map<Character,Integer> lettersMap = new HashMap<>();
                 lettersMap.put('A',1);
                 lettersMap.put('B',2);
@@ -60,33 +61,44 @@ public class Main {
                 lettersMap.put('H',8);
                 lettersMap.put('I',9);
             System.out.println("Los asientos verdes están libres y los rojos están ocupados");
-            System.out.println("Asiento");
-            src.append(leer.nextLine());
-                if(lista.get(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1')instanceof Asiento_libre){
-                    System.out.println("El asiento está libre, meta sus datos para ver si cumple los requisitos");
-                    System.out.println("Nombre: ");
-                    String nombre = leer.nextLine();
-                    System.out.println("Apellido: ");
-                    String apellido = leer.nextLine();
-                    System.out.println("Edad: ");
-                    int edad = leer.nextInt();
-                    System.out.println("Dinero: ");
-                    int dinero = leer.nextInt();
-                    Asiento_ocupado Ocupado = new Asiento_ocupado(src, nombre, apellido, edad, dinero);
-                    if(Ocupado.getDinero()>=film.getPrecio()){
-                        if(Ocupado.getEdad()>=film.getEdad_minima()){
-                            Ocupado.setDinero(Ocupado.getDinero()-film.getPrecio());
-                            lista.remove(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1');
-                            lista.add(lettersMap.get(src.charAt(1))+(int)src.charAt(0)-'1',Ocupado);
+            Boolean a=false;
+            while(a==false){
+                    String src;
+                    StringBuilder srt = new StringBuilder();
+                    System.out.println("Asiento");
+                    src=(leer.nextLine());
+                    srt.append(src);
+                        for(int i=0;i<list.size();i++){
+                            if((list.get(i)).getAsient().equals(srt)){
+                            System.out.println("El asiento está libre, meta sus datos para ver si cumple los requisitos");
+                            System.out.println("Nombre: ");
+                            String nombre = leer.nextLine();
+                            System.out.println("Apellido: ");
+                            String apellido = leer.nextLine();
+                            System.out.println("Edad: ");
+                            int edad = leer.nextInt();
+                            System.out.println("Dinero: ");
+                            int dinero = leer.nextInt();
+                            Asiento_ocupado Ocupado = new Asiento_ocupado(srt, nombre, apellido, edad, dinero);
+                            if(Ocupado.getDinero()>=film.getPrecio()){
+                                if(Ocupado.getEdad()>=film.getEdad_minima()){
+                                    Ocupado.setDinero(Ocupado.getDinero()-film.getPrecio());
+                                    list.remove(i);
+                                    lista.add(Ocupado);
+                                    a=true;
+                                    break;
+                                    
+                                }
+                                else{
+                                    System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene la edad suficiente");
+                                }
+                            }
+                            else{
+                                System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene suficiente dinero");
+                            }           
                         }
-                        else{
-                            System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene la edad suficiente");
-                        }
-                    }
-                    else{
-                        System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene suficiente dinero");
-                    }           
-                }
-    }
+            }
             
+    }
+}
 }       
