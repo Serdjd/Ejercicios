@@ -1,75 +1,64 @@
 package cine;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[]args) throws Exception{
-        final String Red="\u001B[31m";
-        final String Green = "\u001B[32m";
-        final String Reset = "\u001B[0m";
         Pelicula_ film = new Pelicula_(Generadores.peli());
+        Boolean asignacion;
+        int contador=0;
+        ArrayList<Asientos> lista = new ArrayList<Asientos>();
+        ArrayList<String>libres = new ArrayList<String>();
             String letras = "ABCDEFGHI";
-            StringBuilder hall[][] = new StringBuilder[10][9];
-            ArrayList<Asiento_libre> list = new ArrayList<>();
-            ArrayList<Asiento_ocupado> lista = new ArrayList<>();
             for(int i=0;i<9;i++){
+                
                 for(int j=0;j<8;j++){
-                    StringBuilder str = new StringBuilder();
-                    str.append(j+letras.charAt(i));
-                    hall[i][j] = new StringBuilder();
-                    String color = Generadores.rand_asientos();
-                    hall[i][j].append(color+(j+1)+letras.charAt(i)+Reset);
-                    if(color.equals(Red)){
-                            Asiento_ocupado ocupado = new Asiento_ocupado(str);
-                        if(ocupado.getDinero()>=film.getPrecio()){
-                            if(ocupado.getEdad()>=film.getEdad_minima()){
-                                ocupado.setDinero(ocupado.getDinero()-film.getPrecio());
-                                lista.add(ocupado);
+                    
+                    asignacion = Generadores.rand_aginacion();
+                    if(asignacion==true){
+                        Asientos butaca = new Asientos(letras.charAt(i),j,asignacion);
+                        if(butaca.getDinero()>=film.getPrecio()){
+
+                            if(butaca.getEdad()>=film.getEdad_minima()){
+                                    butaca.setDinero(butaca.getDinero()-film.getPrecio());
+                                    lista.add(butaca);
                             }
+
                             else{
-                                System.out.println(ocupado.getNombre()+ocupado.getApellido()+" no tiene la edad suficiente");
-                                Asiento_libre libre = new Asiento_libre(str);
-                                list.add(libre);
-                            }
+                                    System.out.println(butaca.getNombre()+butaca.getApellido()+" no tiene la edad suficiente");
+                                    Asientos butacon = new Asientos(letras.charAt(i),j);
+                                    lista.add(butacon);
+                            } 
+
                         }
+
                         else{
-                            System.out.println(ocupado.getNombre()+ocupado.getApellido()+" no tiene suficiente dinero");
-                            Asiento_libre libre = new Asiento_libre(str);
-                            list.add(libre);
+                                System.out.println(butaca.getNombre()+butaca.getApellido()+" no tiene suficiente dinero");
+                                Asientos butacon = new Asientos(letras.charAt(i),j);
+                                lista.add(butacon);
                         }                    
+
                     }
+                    else{
+                        Asientos butaca = new Asientos(letras.charAt(i),j);
+                        lista.add(butaca);
+                    }
+                    if(lista.get(contador).isAsignado()==false){
+                        libres.add(lista.get(contador).toString());
+                    }
+                    contador++;
                 }
             }
-            for(int i=0;i<9;i++){
-                for(int j=0;j<8;j++){
-                    System.out.print(hall[i][j]+" ");
-                }
-                System.out.print("\n");
-            }
+            System.out.println("Los siguientes asientos están libres");
+            System.out.println(libres.toString());
             Scanner leer = new Scanner(System.in);
-            
-            Map<Character,Integer> lettersMap = new HashMap<>();
-                lettersMap.put('A',1);
-                lettersMap.put('B',2);
-                lettersMap.put('C',3);
-                lettersMap.put('D',4);
-                lettersMap.put('E',5);
-                lettersMap.put('F',6);
-                lettersMap.put('G',7);
-                lettersMap.put('H',8);
-                lettersMap.put('I',9);
-            System.out.println("Los asientos verdes están libres y los rojos están ocupados");
-            Boolean a=false;
-            while(a==false){
-                    String src;
-                    StringBuilder srt = new StringBuilder();
-                    System.out.println("Asiento");
-                    src=(leer.nextLine());
-                    srt.append(src);
-                        for(int i=0;i<list.size();i++){
-                            if((list.get(i)).getAsient().equals(srt)){
+                    System.out.print("Fila: ");
+                    char fila=leer.nextLine().charAt(0);
+                    System.out.print("Número de butaca: ");
+                    int numero=leer.nextInt();
+                    leer.nextLine();
+                        for(int i=0;i<lista.size();i++){
+                            if(Character.compare(fila, lista.get(i).getFila())==0){
                             System.out.println("El asiento está libre, meta sus datos para ver si cumple los requisitos");
                             System.out.println("Nombre: ");
                             String nombre = leer.nextLine();
@@ -79,26 +68,24 @@ public class Main {
                             int edad = leer.nextInt();
                             System.out.println("Dinero: ");
                             int dinero = leer.nextInt();
-                            Asiento_ocupado Ocupado = new Asiento_ocupado(srt, nombre, apellido, edad, dinero);
-                            if(Ocupado.getDinero()>=film.getPrecio()){
-                                if(Ocupado.getEdad()>=film.getEdad_minima()){
-                                    Ocupado.setDinero(Ocupado.getDinero()-film.getPrecio());
-                                    list.remove(i);
-                                    lista.add(Ocupado);
-                                    a=true;
-                                    break;
-                                    
+                            leer.nextLine();
+                            Asientos asiento = new Asientos(fila, numero, nombre, apellido, edad, dinero);
+                            if(asiento.getDinero()>=film.getPrecio()){
+                                if(asiento.getEdad()>=film.getEdad_minima()){
+                                    asiento.setDinero(asiento.getDinero()-film.getPrecio());
+                                    lista.remove(i);
+                                    lista.add(asiento);
                                 }
                                 else{
-                                    System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene la edad suficiente");
+                                    System.out.println(asiento.getNombre()+asiento.getApellido()+" no tiene la edad suficiente");
                                 }
                             }
                             else{
-                                System.out.println(Ocupado.getNombre()+Ocupado.getApellido()+" no tiene suficiente dinero");
+                                System.out.println(asiento.getNombre()+asiento.getApellido()+" no tiene suficiente dinero");
                             }           
                         }
             }
             
-    }
+
 }
 }       
