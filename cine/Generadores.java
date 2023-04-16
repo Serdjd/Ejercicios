@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Generadores {
     public static final String Red="\u001B[31m";
     public static final String Green = "\u001B[32m";
-    public static String rand_asientos(){
+    public static boolean rand_aginacion(){
         int i = (int)Math.floor(Math.random()*2+1);
         if(i==2){
-            return Red;
+            return false;
         }
         else{
-            return Green;
+            return true;
         }
     }
     public static String peli(){
