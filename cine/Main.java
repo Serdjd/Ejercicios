@@ -58,7 +58,7 @@ public class Main {
                     int numero=leer.nextInt();
                     leer.nextLine();
                         for(int i=0;i<lista.size();i++){
-                            if(Character.compare(fila, lista.get(i).getFila())==0){
+                            if((Character.compare(fila, lista.get(i).getFila())==0)&&(numero==lista.get(i).getNumero())){
                             System.out.println("El asiento está libre, meta sus datos para ver si cumple los requisitos");
                             System.out.println("Nombre: ");
                             String nombre = leer.nextLine();
@@ -75,6 +75,7 @@ public class Main {
                                     asiento.setDinero(asiento.getDinero()-film.getPrecio());
                                     lista.remove(i);
                                     lista.add(asiento);
+                                    break;
                                 }
                                 else{
                                     System.out.println(asiento.getNombre()+asiento.getApellido()+" no tiene la edad suficiente");
