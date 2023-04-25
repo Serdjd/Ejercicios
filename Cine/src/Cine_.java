@@ -1,4 +1,4 @@
-
+package Cine.src;
 
 public class Cine_ {
     protected String pelicula;

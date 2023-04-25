@@ -1,4 +1,4 @@
-package ejercicio6;
+
 public class Opciones {
     private String nombre;
     private int nota;

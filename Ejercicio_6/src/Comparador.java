@@ -1,4 +1,4 @@
-package ejercicio6;
+
 import java.util.Comparator;
 public class Comparador implements Comparator<Opciones> {
 

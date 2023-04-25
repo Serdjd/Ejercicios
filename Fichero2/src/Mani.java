@@ -26,5 +26,7 @@ public class Mani {
             System.out.println("El número vale "+leer_archivo.next().trim()+" y está en la posición "+(contador1-contador2));
             contador1++;
         }
+        leer_archivo.close();
+        leer.close();
     }
 }

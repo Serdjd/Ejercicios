@@ -1,4 +1,4 @@
-
+package Cine.src;
 
 public class Espectador {
     private String nombre;
