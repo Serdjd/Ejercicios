@@ -13,8 +13,8 @@ public class Persona {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public Persona(String nombre, int edad) {
+    public Persona(String nombre) {
         this.nombre = nombre;
-        this.edad = edad;
+        this.edad = (int) Math.floor(Math.random()*60+4);
     }
     }
