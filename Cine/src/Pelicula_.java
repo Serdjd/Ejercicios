@@ -1,4 +1,4 @@
-package Cine.src;
+
 
 public class Pelicula_ extends Cine_{
     private int duracion;

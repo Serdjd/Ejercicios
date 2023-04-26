@@ -1,4 +1,4 @@
-package Cine.src;
+
 
 public class Asientos extends Espectador{
     private char fila;
