@@ -25,7 +25,7 @@ public class Generadores {
         pelis.put(5,"Avengers: End Game");
         System.out.println("Selecciona una pelicula:\nAvatar 2-->1\nLord of the rings-->2\nWakanda Forever-->3\nEl bueno, el feo y el malo-->4\nAvengers: End Game-->5\n");
         int num = src.nextInt();
-        src.close();
+        
         return pelis.get(num);
     }
     public static int rand_precios(String pelicula){
