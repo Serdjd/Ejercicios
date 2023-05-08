@@ -12,55 +12,60 @@ public class Principal {
                 System.exit(0);
             }
             FileReader in = new FileReader(archivo);
-            FileWriter out = new FileWriter(archivo);
+            FileWriter out = new FileWriter(archivo,true);
             Nombres names = new Nombres();
             Scanner leer = new Scanner(System.in);
             ArrayList<Persona> lista = new ArrayList<>();
-            System.out.println("Número de personas: ");
-            int numero_pers = leer.nextInt();
             Scanner leer_archivo = new Scanner(archivo);
         if(leer_archivo.hasNext()==false){
+            System.out.println("Número de personas: ");
+            int numero_pers = leer.nextInt();
             for(int i=0;i<numero_pers;i++){
                 Persona person = new Persona(names.rand_nombre());
                 lista.add(person);
+                out.write(person.getNombre()+" ");
+                out.write(person.getEdad()+" "+"\n");
             }
         }
-        /*
-        hay que ver como se guardan los objetos
-        int exit=1;
-        int contador=0;
-        int[] list = new int[numero_pers];
-        Quicksort algoritmo = new Quicksort();
-        while(exit!=0){
-            System.out.println("Mostrar listado --> 1\nOrdenar por edad --> 2\nOrdenar alfabeticamente -->3\nAñadir personas -->4\nSalir del programa -->0");
-            exit=leer.nextInt();
+        
+           
+            int contador=0;
+            int exit=1;
+            while(exit!=0){
+                System.out.println("Mostrar listado --> 1\nAñadir personas -->2\nSalir del programa -->0");
+                exit=leer.nextInt();
             switch(exit){
                 case 1:
                 while(leer_archivo.hasNext()){
-                    System.out.println(leer_archivo.next().trim());
+                    System.out.print(leer_archivo.next().trim());
                     contador+=1;
-                    if(contador/2!=0){
-                        System.out.println("\n");
+                    if(contador%2==0){
+                        System.out.print("\n");
                     }
                     else{
-                        System.out.println(" ");
+                        System.out.print(" ");
                     }
                 }
                 contador=0;
                 break;
+                
                 case 2:
-                while(leer_archivo.hasNext()){
-                    
-                    list[contador]=leer_archivo.nextInt();
-                    contador+=1;
-                }
-                algoritmo.sort(list,list[0],list[contador-1]);
+                System.out.println("Dime nombre");
+                String nombre = leer.nextLine();
+                System.out.println("Dime edad");
+                int edad = leer.nextInt();
+                Persona people = new Persona(nombre,edad);
+                out.write(people.getNombre()+" ");
+                out.write(people.getEdad()+" "+"\n");
+                break;
+
+                default:
+                break;
             }
-        }*/
-          
-            
-
-             
     }
-
+    out.close();
+    in.close();
+    leer.close();
+    leer_archivo.close();
+    }
 }

@@ -17,4 +17,8 @@ public class Persona {
         this.nombre = nombre;
         this.edad = (int) Math.floor(Math.random()*60+4);
     }
+    public Persona(String nombre,int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
     }
